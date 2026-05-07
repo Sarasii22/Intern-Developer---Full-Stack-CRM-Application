@@ -1,52 +1,100 @@
 const Lead = require("../models/Lead");
 
 const getLeads = async (req, res) => {
-  const leads = await Lead.find();
-
-  res.json(leads);
+  try {
+    const leads = await Lead.find();
+    res.json(leads);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
 
 const createLead = async (req, res) => {
-  const lead = await Lead.create(req.body);
+  try {
+    const { leadName, companyName, email, phoneNumber, leadSource, assignedSalesperson, status, estimatedDealValue } = req.body;
 
-  res.json(lead);
+    // Basic validation
+    if (!leadName || !companyName || !email || !phoneNumber) {
+      return res.status(400).json({ message: "Required fields missing" });
+    }
+
+    const lead = await Lead.create(req.body);
+    res.status(201).json(lead);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
 
 const updateLead = async (req, res) => {
-  const lead = await Lead.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
+  try {
+    const lead = await Lead.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
 
-  res.json(lead);
+    if (!lead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+
+    res.json(lead);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
 
 const deleteLead = async (req, res) => {
-  await Lead.findByIdAndDelete(req.params.id);
+  try {
+    const lead = await Lead.findByIdAndDelete(req.params.id);
 
-  res.json({
-    message: "Lead deleted",
-  });
+    if (!lead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+
+    res.json({ message: "Lead deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
 
 const getLeadById = async (req, res) => {
-  const lead = await Lead.findById(req.params.id);
+  try {
+    const lead = await Lead.findById(req.params.id);
 
-  res.json(lead);
+    if (!lead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+
+    res.json(lead);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
 
 const addNote = async (req, res) => {
-  const lead = await Lead.findById(req.params.id);
+  try {
+    const { content } = req.body;
 
-  lead.notes.push({
-    content: req.body.content,
-    createdBy: "Admin",
-  });
+    if (!content) {
+      return res.status(400).json({ message: "Note content required" });
+    }
 
-  await lead.save();
+    const lead = await Lead.findById(req.params.id);
 
-  res.json(lead);
+    if (!lead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+
+    lead.notes.push({
+      content,
+      createdBy: req.user.email || "Admin", // Use user email if available
+    });
+
+    await lead.save();
+    res.json(lead);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
 
 module.exports = {

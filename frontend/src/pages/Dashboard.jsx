@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import API from "../services/api";
@@ -13,10 +14,6 @@ function Dashboard() {
     totalValue: 0,
     wonValue: 0,
   });
-
-  useEffect(() => {
-    fetchLeads();
-  }, []);
 
   const fetchLeads = async () => {
     try {
@@ -52,11 +49,32 @@ function Dashboard() {
     }
   };
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchLeads();
+  }, []);
+
   return (
     <>
       <Navbar />
 
       <div className="page">
+        <section className="hero">
+          <div className="hero-copy">
+            <p className="eyebrow">Sales intelligence built for your team</p>
+            <h1>Move leads forward with clarity and confidence.</h1>
+            <p className="hero-text">
+              Analyze pipeline health, prioritize top opportunities, and stay on top of every customer conversation from one beautiful CRM dashboard.
+            </p>
+          </div>
+
+          <div className="hero-actions">
+            <button className="hero-button" onClick={() => navigate("/leads")}>View Leads</button>
+            <button className="hero-secondary" onClick={() => navigate("/add-lead")}>Add New Lead</button>
+          </div>
+        </section>
+
         <h1>Dashboard</h1>
 
         <div className="dashboard-grid">

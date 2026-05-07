@@ -22,10 +22,6 @@ function EditLead() {
     estimatedDealValue: "",
   });
 
-  useEffect(() => {
-    fetchLead();
-  }, []);
-
   const fetchLead = async () => {
     try {
       const res = await API.get(`/leads/${id}`);
@@ -35,6 +31,10 @@ function EditLead() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    fetchLead();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({

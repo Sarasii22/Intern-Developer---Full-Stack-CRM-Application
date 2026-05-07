@@ -8,6 +8,7 @@ import EditLead from "./pages/EditLead";
 import LeadDetails from "../src/pages/LeadDetail";
 
 import ProtectedRoute from "./components/ProtectedRoute";
+import Footer from "./components/Footer";
 
 import "./styles/main.css";
 
@@ -62,6 +63,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
