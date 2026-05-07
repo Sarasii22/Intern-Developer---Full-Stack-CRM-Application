@@ -16,24 +16,6 @@ body {
   padding: 0 20px;
 }
 
-/* Navbar */
-.navbar {
-  background: #1e40af;
-  color: white;
-  padding: 1rem 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: 500;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}
 
 /* Cards */
 .card {

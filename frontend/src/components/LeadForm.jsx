@@ -1,3 +1,5 @@
+import '../styles/LeadForm.css';
+
 function LeadForm({
   formData,
   handleChange,
@@ -8,104 +10,131 @@ function LeadForm({
   return (
     <form onSubmit={handleSubmit} className="lead-form">
       <div className="form-grid">
-        <input
-          type="text"
-          name="leadName"
-          placeholder="Lead Name"
-          value={formData.leadName || ""}
-          onChange={handleChange}
-          required
-        />
+        
+        <div className="form-group">
+          <label>Lead Name</label>
+          <input
+            type="text"
+            name="leadName"
+            placeholder="Enter lead name"
+            value={formData.leadName || ""}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          name="companyName"
-          placeholder="Company Name"
-          value={formData.companyName || ""}
-          onChange={handleChange}
-          required
-        />
+        <div className="form-group">
+          <label>Company Name</label>
+          <input
+            type="text"
+            name="companyName"
+            placeholder="Enter company name"
+            value={formData.companyName || ""}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={formData.email || ""}
-          onChange={handleChange}
-          required
-        />
+        <div className="form-group">
+          <label>Email Address</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="example@company.com"
+            value={formData.email || ""}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        {/* Improved Phone Number */}
-        <input
-          type="tel"
-          name="phoneNumber"
-          placeholder="Phone Number (e.g. 0771234567)"
-          value={formData.phoneNumber || ""}
-          onChange={handleChange}
-          required
-          pattern="[0-9+\s-]{8,15}"   // Basic validation for phone
-          title="Please enter a valid phone number"
-        />
+        <div className="form-group">
+          <label>Phone Number</label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="0771234567"
+            value={formData.phoneNumber || ""}
+            onChange={handleChange}
+            required
+            pattern="[0-9+\s-]{8,15}"
+            title="Please enter a valid phone number"
+          />
+        </div>
 
-        <select 
-          name="leadSource" 
-          value={formData.leadSource || "Website"} 
-          onChange={handleChange}
-        >
-          <option value="Website">Website</option>
-          <option value="LinkedIn">LinkedIn</option>
-          <option value="Referral">Referral</option>
-          <option value="Cold Email">Cold Email</option>
-          <option value="Facebook">Facebook</option>
-          <option value="Event">Event</option>
-        </select>
+        <div className="form-group">
+          <label>Lead Source</label>
+          <select 
+            name="leadSource" 
+            value={formData.leadSource || "Website"} 
+            onChange={handleChange}
+          >
+            <option value="Website">Website</option>
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Referral">Referral</option>
+            <option value="Cold Email">Cold Email</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Event">Event</option>
+          </select>
+        </div>
 
-        {/* Improved Assigned Salesperson */}
-        <select 
-          name="assignedSalesperson" 
-          value={formData.assignedSalesperson || "Unassigned"} 
-          onChange={handleChange}
-        >
-          <option value="Unassigned">Unassigned</option>
-          <option value="Sarasi">Sarasi</option>
-          <option value="John">John</option>
-          <option value="Emily">Emily</option>
-          <option value="David">David</option>
-          <option value="Michael">Michael</option>
-          <option value="Priya">Priya</option>
-        </select>
+        <div className="form-group">
+          <label>Assigned Salesperson</label>
+          <select 
+            name="assignedSalesperson" 
+            value={formData.assignedSalesperson || "Unassigned"} 
+            onChange={handleChange}
+          >
+            <option value="Unassigned">Unassigned</option>
+            <option value="Sarasi">Sarasi</option>
+            <option value="John">John</option>
+            <option value="Emily">Emily</option>
+            <option value="David">David</option>
+            <option value="Michael">Michael</option>
+            <option value="Priya">Priya</option>
+          </select>
+        </div>
 
-        <select 
-          name="status" 
-          value={formData.status || "New"} 
-          onChange={handleChange}
-        >
-          <option value="New">New</option>
-          <option value="Contacted">Contacted</option>
-          <option value="Qualified">Qualified</option>
-          <option value="Proposal Sent">Proposal Sent</option>
-          <option value="Won">Won</option>
-          <option value="Lost">Lost</option>
-        </select>
+        <div className="form-group">
+          <label>Status</label>
+          <select 
+            name="status" 
+            value={formData.status || "New"} 
+            onChange={handleChange}
+          >
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Proposal Sent">Proposal Sent</option>
+            <option value="Won">Won</option>
+            <option value="Lost">Lost</option>
+          </select>
+        </div>
 
-        <select 
-          name="priority" 
-          value={formData.priority || "Medium"} 
-          onChange={handleChange}
-        >
-          <option value="Low">Low Priority</option>
-          <option value="Medium">Medium Priority</option>
-          <option value="High">High Priority</option>
-        </select>
+        <div className="form-group">
+          <label>Priority</label>
+          <select 
+            name="priority" 
+            value={formData.priority || "Medium"} 
+            onChange={handleChange}
+          >
+            <option value="Low">Low Priority</option>
+            <option value="Medium">Medium Priority</option>
+            <option value="High">High Priority</option>
+          </select>
+        </div>
 
-        <input
-          type="number"
-          name="estimatedDealValue"
-          placeholder="Estimated Deal Value (LKR)"
-          value={formData.estimatedDealValue || ""}
-          onChange={handleChange}
-          min="0"
-        />
+        <div className="form-group">
+          <label>Estimated Deal Value (LKR)</label>
+          <input
+            type="number"
+            name="estimatedDealValue"
+            placeholder="0"
+            value={formData.estimatedDealValue || ""}
+            onChange={handleChange}
+            min="0"
+          />
+        </div>
+
       </div>
 
       <button type="submit" className="primary-btn" disabled={isLoading}>

@@ -1,0 +1,167 @@
+/* src/styles/Leads.css */
+
+.page {
+  padding: 32px 40px 60px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.page h1 {
+  margin-bottom: 24px;
+  font-size: clamp(2rem, 2.6vw, 2.7rem);
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* Filters */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 28px 0 32px;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.filters input:focus,
+.filters select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* Leads Table */
+.leads-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.leads-table thead {
+  background: #f1f5f9;
+}
+
+.leads-table th {
+  padding: 18px 16px;
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  color: #475569;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.leads-table td {
+  padding: 18px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+.leads-table tbody tr {
+  transition: all 0.25s ease;
+}
+
+.leads-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.05);
+  transform: scale(1.01);
+}
+
+/* Status Dropdown */
+.status-select {
+  padding: 10px 14px;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  background: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.status-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.loading-text {
+  font-size: 0.85rem;
+  color: #2563eb;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+/* Priority Badges */
+.priority {
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.priority-low    { background: #fef3c7; color: #92400e; }
+.priority-medium { background: #dbeafe; color: #1e40af; }
+.priority-high   { background: #fee2e2; color: #b91c1c; }
+
+/* Action Buttons */
+.action-btn {
+  margin-right: 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 840px) {
+  .page {
+    padding: 24px 20px 40px;
+  }
+  
+  .filters {
+    grid-template-columns: 1fr;
+  }
+  
+  .leads-table th,
+  .leads-table td {
+    padding: 14px 10px;
+    font-size: 0.9rem;
+  }
+}

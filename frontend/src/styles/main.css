@@ -509,6 +509,7 @@ table button:hover {
   cursor: pointer;
 }
 
+
 @media (max-width: 840px) {
   .navbar {
     flex-direction: column;
