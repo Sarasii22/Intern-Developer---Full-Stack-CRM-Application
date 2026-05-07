@@ -400,6 +400,115 @@ table button:hover {
   font-size: 0.95rem;
 }
 
+
+.priority {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.priority-low { background: #fef3c7; color: #92400e; }
+.priority-medium { background: #dbeafe; color: #1e40af; }
+.priority-high { background: #fee2e2; color: #b91c1c; }
+
+
+.quick-status {
+  margin-top: 6px;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.status-btn {
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.status-btn:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+.status-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+/* Improved Table Styling */
+.leads-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.leads-table th,
+.leads-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.leads-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #374151;
+}
+
+.status-select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.status-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.loading-text {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  margin-left: 8px;
+}
+
+.action-btn {
+  margin-right: 6px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+/* Priority Colors */
+.priority {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.priority-low { background: #fef3c7; color: #92400e; }
+.priority-medium { background: #dbeafe; color: #1e40af; }
+.priority-high { background: #fee2e2; color: #b91c1c; }
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 @media (max-width: 840px) {
   .navbar {
     flex-direction: column;

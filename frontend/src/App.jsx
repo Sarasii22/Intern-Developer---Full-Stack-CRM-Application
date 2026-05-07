@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Leads from "./pages/Leads";
 import AddLead from "./pages/AddLead";
 import EditLead from "./pages/EditLead";
-import LeadDetails from "../src/pages/LeadDetail";
+import LeadDetails from "./pages/LeadDetail";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import Footer from "./components/Footer";

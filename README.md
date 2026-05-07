@@ -144,21 +144,53 @@ crm-app/
 - Basic error handling and validation
 - No email notifications or integrations
 
+## Demo Video Requirements
+
+Create a 5-10 minute demo video covering:
+1. **Project Setup**: Show terminal output of running both backend and frontend
+2. **Login Flow**: Demonstrate login with test credentials (admin@example.com / password123)
+3. **Dashboard**: Show all 7 dashboard statistics cards with data
+4. **Create Lead**: Walk through the Add Lead form with all fields and create a sample lead
+5. **Edit Lead**: Open a lead and demonstrate editing its fields
+6. **Update Status**: Show changing a lead's status (e.g., New → Qualified → Won)
+7. **Add Notes**: Add a note to a lead and show it appears with timestamp and creator
+8. **Search**: Filter leads by searching for name, company, or email
+9. **Filter**: Demonstrate filtering by Status, Lead Source, and Assigned Salesperson
+10. **Backend**: Brief explanation of the API structure, MongoDB schema, and JWT authentication
+11. **Database**: Show MongoDB collections and document structure
+
+Submit video link on: [Assignment Submission Form](https://airtable.com/app9kXuirRbKEJ88P/pag1nNFlinQLeevO1/form)
+
 ## Reflection
 
 This CRM application demonstrates core full-stack development skills including:
-- Building RESTful APIs with Express.js
-- Implementing JWT authentication
-- Designing MongoDB schemas with Mongoose
-- Creating responsive React components
-- Managing state and API integration
-- Implementing CRUD operations
-- Adding search and filtering functionality
+- Building RESTful APIs with Express.js and proper CRUD operations
+- Implementing JWT authentication with protected routes
+- Designing MongoDB schemas with Mongoose including nested note documents
+- Creating responsive React components with hooks and state management
+- Integrating frontend with backend APIs using Axios
+- Implementing advanced search and multi-criteria filtering
+- Styling with modern CSS featuring gradients, transitions, and responsive design
+- Error handling and validation at both frontend and backend
+- Database timestamp tracking (createdAt, updatedAt)
+- User experience improvements with hero section, footer, and professional UI
+
+## Bonus Features Implemented
+
+- **Hero Section**: Eye-catching dashboard hero with CTA buttons for navigation
+- **Footer**: Professional footer visible across all protected routes
+- **Modern UI**: Gradient backgrounds, smooth transitions, professional color scheme
+- **Priority Field**: Added priority tracking (Low, Medium, High) for leads
+- **Status-based Calculations**: Dashboard calculates stats by status dynamically
+- **Responsive Design**: Mobile-optimized layout with flexible grid system
+- **Note Timestamps**: Notes include precise creation dates and creator attribution
 
 Areas for future improvement:
-- User registration and role-based access
-- Advanced filtering and sorting
-- Lead import/export functionality
-- Email integration for notifications
-- Dashboard charts and analytics
-- Mobile-responsive design enhancements
+- User registration and role-based access control
+- Advanced analytics dashboard with charts and graphs
+- Lead import/export functionality (CSV)
+- Email notifications for status changes
+- Lead scoring algorithm for prioritization
+- Activity timeline showing all lead changes
+- Bulk operations on multiple leads
+- Advanced reporting and forecasting
