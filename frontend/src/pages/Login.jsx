@@ -27,7 +27,7 @@ function Login() {
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
     } catch (error) {
-      alert("❌ Invalid Credentials. Please try again.");
+      alert("Invalid Credentials. Please try again.");
     } finally {
       setIsLoading(false);
     }

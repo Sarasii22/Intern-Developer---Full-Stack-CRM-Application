@@ -6,7 +6,7 @@ import Leads from "./pages/Leads";
 import AddLead from "./pages/AddLead";
 import EditLead from "./pages/EditLead";
 import LeadDetails from "./pages/LeadDetail";
-
+import Kanban from "./pages/Kanban";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Footer from "./components/Footer";
 import "./styles/main.css";
@@ -62,9 +62,18 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/kanban"
+            element={
+              <ProtectedRoute>
+                <Kanban />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
 
-        {/* Footer will always stay at bottom */}
+        
         <Footer />
       </div>
     </BrowserRouter>

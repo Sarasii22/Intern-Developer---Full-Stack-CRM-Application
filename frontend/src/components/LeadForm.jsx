@@ -85,7 +85,6 @@ function LeadForm({
             onChange={handleChange}
           >
             <option value="Unassigned">Unassigned</option>
-            <option value="Sarasi">Sarasi</option>
             <option value="John">John</option>
             <option value="Emily">Emily</option>
             <option value="David">David</option>

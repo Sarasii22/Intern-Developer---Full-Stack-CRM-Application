@@ -1,9 +1,9 @@
-/* src/styles/Navbar.css */
+
 
 .navbar {
   background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
   color: white;
-  padding: 18px 40px;           /* Added good left/right padding */
+  padding: 18px 40px;          
   display: flex;
   justify-content: space-between;
   align-items: center;

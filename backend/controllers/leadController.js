@@ -13,7 +13,7 @@ const createLead = async (req, res) => {
   try {
     const { leadName, companyName, email, phoneNumber, leadSource, assignedSalesperson, status, estimatedDealValue } = req.body;
 
-    // Basic validation
+    
     if (!leadName || !companyName || !email || !phoneNumber) {
       return res.status(400).json({ message: "Required fields missing" });
     }

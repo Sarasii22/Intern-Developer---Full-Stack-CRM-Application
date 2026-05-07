@@ -15,6 +15,8 @@ function Navbar() {
       <div className="nav-links">
         <Link to="/dashboard">Dashboard</Link>
 
+        <Link to="/kanban">Kanban</Link>
+        
         <Link to="/leads">Leads</Link>
 
         <Link to="/add-lead">Add Lead</Link>

@@ -45,11 +45,11 @@ function EditLead() {
 
     try {
       await API.put(`/leads/${id}`, formData);
-      alert("✅ Lead Updated Successfully!");
+      alert("Lead Updated Successfully!");
       navigate("/leads");
     } catch (error) {
       console.error(error);
-      alert("❌ Failed to update lead.");
+      alert("Failed to update lead.");
     } finally {
       setIsLoading(false);
     }
