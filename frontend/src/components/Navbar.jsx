@@ -1,33 +1,28 @@
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = ({ setIsAuth }) => {
+function Navbar() {
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await axios.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true });
-      setIsAuth(false);
-      navigate('/login');
-    } catch (err) {
-      console.error(err);
-    }
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
-    <nav className="navbar">
-      <div className="container flex justify-between items-center">
-        <div className="flex items-center gap-8">
-          <h1 className="text-2xl font-bold">CRM Leads</h1>
-          <div>
-            <Link to="/" className="nav-link">Dashboard</Link>
-            <Link to="/leads" className="nav-link">Leads</Link>
-          </div>
-        </div>
-        <button onClick={handleLogout} className="btn btn-danger">Logout</button>
+    <div className="navbar">
+      <h2>CRM System</h2>
+
+      <div className="nav-links">
+        <Link to="/dashboard">Dashboard</Link>
+
+        <Link to="/leads">Leads</Link>
+
+        <Link to="/add-lead">Add Lead</Link>
+
+        <button onClick={logout}>Logout</button>
       </div>
-    </nav>
+    </div>
   );
-};
+}
 
 export default Navbar;

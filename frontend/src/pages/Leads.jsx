@@ -1,129 +1,121 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
-const Leads = () => {
+import { Link } from "react-router-dom";
+
+import Navbar from "../components/Navbar";
+import API from "../services/api";
+
+function Leads() {
   const [leads, setLeads] = useState([]);
-  const [filters, setFilters] = useState({ status: '', source: '', search: '' });
-  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
   useEffect(() => {
     fetchLeads();
-  }, [filters]);
+  }, []);
 
   const fetchLeads = async () => {
     try {
-      let url = 'http://localhost:5000/api/leads?';
-      if (filters.status) url += `status=${filters.status}&`;
-      if (filters.source) url += `source=${filters.source}&`;
-      if (filters.search) url += `search=${filters.search}`;
+      const res = await API.get("/leads");
 
-      const res = await axios.get(url, { withCredentials: true });
       setLeads(res.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const deleteLead = async (id) => {
-    if (!window.confirm('Delete this lead?')) return;
-    try {
-      await axios.delete(`http://localhost:5000/api/leads/${id}`, { withCredentials: true });
+    if (window.confirm("Delete this lead?")) {
+      await API.delete(`/leads/${id}`);
+
       fetchLeads();
-    } catch (err) {
-      alert('Failed to delete');
     }
   };
 
-  const getStatusClass = (status) => {
-    return `status status-${status.toLowerCase().replace(' ', '-')}`;
-  };
+  const filteredLeads = leads.filter((lead) => {
+    const matchesSearch =
+      lead.leadName.toLowerCase().includes(search.toLowerCase()) ||
+      lead.companyName.toLowerCase().includes(search.toLowerCase()) ||
+      lead.email.toLowerCase().includes(search.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "" || lead.status === statusFilter;
+
+    return matchesSearch && matchesStatus;
+  });
 
   return (
-    <div className="container py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">All Leads</h1>
-        <Link to="/leads/new" className="btn btn-primary">+ New Lead</Link>
-      </div>
+    <>
+      <Navbar />
 
-      {/* Filters */}
-      <div className="card mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div>
-            <input
-              type="text"
-              placeholder="Search by name, company, email..."
-              className="form-control"
-              value={filters.search}
-              onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-            />
-          </div>
+      <div className="page">
+        <h1>Leads</h1>
 
-          <div>
-            <select className="form-control" value={filters.status} onChange={(e) => setFilters({ ...filters, status: e.target.value })}>
-              <option value="">All Status</option>
-              <option value="New">New</option>
-              <option value="Contacted">Contacted</option>
-              <option value="Qualified">Qualified</option>
-              <option value="Proposal Sent">Proposal Sent</option>
-              <option value="Won">Won</option>
-              <option value="Lost">Lost</option>
-            </select>
-          </div>
+        <div className="filters">
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={(e) => setSearch(e.target.value)}
+          />
 
-          <div>
-            <select className="form-control" value={filters.source} onChange={(e) => setFilters({ ...filters, source: e.target.value })}>
-              <option value="">All Sources</option>
-              <option value="Website">Website</option>
-              <option value="LinkedIn">LinkedIn</option>
-              <option value="Referral">Referral</option>
-              <option value="Cold Email">Cold Email</option>
-              <option value="Event">Event</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
+          <select onChange={(e) => setStatusFilter(e.target.value)}>
+            <option value="">All Status</option>
 
-          <button onClick={() => setFilters({ status: '', source: '', search: '' })} className="btn btn-danger">
-            Clear Filters
-          </button>
+            <option value="New">New</option>
+
+            <option value="Qualified">Qualified</option>
+
+            <option value="Won">Won</option>
+
+            <option value="Lost">Lost</option>
+          </select>
         </div>
-      </div>
 
-      {loading ? <p>Loading...</p> : (
-        <table className="table">
+        <table>
           <thead>
             <tr>
               <th>Name</th>
               <th>Company</th>
               <th>Email</th>
               <th>Status</th>
-              <th>Deal Value</th>
+              <th>Value</th>
               <th>Actions</th>
             </tr>
           </thead>
+
           <tbody>
-            {leads.map(lead => (
+            {filteredLeads.map((lead) => (
               <tr key={lead._id}>
-                <td><Link to={`/leads/${lead._id}`} style={{color: '#1e40af', textDecoration: 'none'}}>{lead.name}</Link></td>
-                <td>{lead.company}</td>
+                <td>{lead.leadName}</td>
+
+                <td>{lead.companyName}</td>
+
                 <td>{lead.email}</td>
-                <td><span className={getStatusClass(lead.status)}>{lead.status}</span></td>
-                <td>₹{lead.dealValue ? lead.dealValue.toLocaleString() : '0'}</td>
+
+                <td>{lead.status}</td>
+
+                <td>${lead.estimatedDealValue}</td>
+
                 <td>
-                  <Link to={`/leads/${lead._id}`} className="btn btn-primary btn-sm">View</Link>
-                  <button onClick={() => deleteLead(lead._id)} className="btn btn-danger btn-sm ml-2">Delete</button>
+                  <Link to={`/lead/${lead._id}`}>
+                    <button>View</button>
+                  </Link>
+
+                  <Link to={`/edit-lead/${lead._id}`}>
+                    <button>Edit</button>
+                  </Link>
+
+                  <button onClick={() => deleteLead(lead._id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      )}
-
-      {leads.length === 0 && !loading && <p className="text-center py-10">No leads found.</p>}
-    </div>
+      </div>
+    </>
   );
-};
+}
 
 export default Leads;

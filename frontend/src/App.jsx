@@ -1,36 +1,68 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Leads from './pages/Leads';
-import LeadDetail from './pages/LeadDetail';
-import Navbar from './components/Navbar';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Leads from "./pages/Leads";
+import AddLead from "./pages/AddLead";
+import EditLead from "./pages/EditLead";
+import LeadDetails from "../src/pages/LeadDetail";
+
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import "./styles/main.css";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    const checkAuth = () => {
-      const hasToken = document.cookie.includes('token');
-      setIsAuth(hasToken);
-    };
-    checkAuth();
-  }, []);
-
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50">
-        {isAuth && <Navbar setIsAuth={setIsAuth} />}
-        
-        <Routes>
-          <Route path="/login" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <Navigate to="/" />} />
-          <Route path="/" element={isAuth ? <Dashboard /> : <Navigate to="/login" />} />
-          <Route path="/leads" element={isAuth ? <Leads /> : <Navigate to="/login" />} />
-          <Route path="/leads/:id" element={isAuth ? <LeadDetail /> : <Navigate to="/login" />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/leads"
+          element={
+            <ProtectedRoute>
+              <Leads />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/add-lead"
+          element={
+            <ProtectedRoute>
+              <AddLead />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/edit-lead/:id"
+          element={
+            <ProtectedRoute>
+              <EditLead />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/lead/:id"
+          element={
+            <ProtectedRoute>
+              <LeadDetails />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

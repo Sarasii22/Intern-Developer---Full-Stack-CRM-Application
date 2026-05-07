@@ -1,25 +1,29 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+
+const connectDB = require("./config/db");
 
 dotenv.config();
 
+connectDB();
+
 const app = express();
 
-// Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // React default port
+app.use(cors());
+
 app.use(express.json());
-app.use(cookieParser());
 
-// Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/leads', require('./routes/leads'));
+app.use("/api/auth", require("./routes/authRoutes"));
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+app.use("/api/leads", require("./routes/leadRoutes"));
+
+app.get("/", (req, res) => {
+  res.send("CRM API Running");
+});
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
+});
