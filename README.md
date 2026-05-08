@@ -49,6 +49,10 @@ This CRM application helps a small sales team manage leads from first contact th
 
 ---
 
+# Demo Video - https://drive.google.com/drive/folders/16-c6aFmG-YCA2WhzaHy5Kjt9_kZQ7Zo8?usp=sharing 
+
+---
+
 ## How to Run Locally
 
 The project is split into two folders: `backend` and `frontend`. Run each in a separate terminal.
