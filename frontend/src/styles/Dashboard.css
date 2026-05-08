@@ -144,7 +144,122 @@
   color: #1e40af;
 }
 
-/* Responsive */
+.dashboard-visuals {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1.2fr 0.8fr;
+  margin-top: 32px;
+}
+
+.chart-card {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #334155;
+}
+
+.chart-header span {
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+
+.chart-card .value-chart .value-row span, .chart-card .value-chart .value-row strong {
+  font-size: 0.9rem;
+  color: #475569;
+  font-weight: 600;
+  padding-top: 25px;
+}
+
+.chart-card .value-chart .progress-bar {
+  margin-bottom: 8px;
+}
+
+.status-row,
+.value-row {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.status-label span,
+.value-row span {
+  color: #475569;
+  font-weight: 600;
+}
+
+.status-label strong,
+.value-row strong {
+  color: #0f172a;
+}
+
+.status-bar,
+.progress-bar {
+  position: relative;
+  height: 16px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.15);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.status-fill,
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.45s ease;
+}
+
+.status-fill.new,
+.progress-fill.open {
+  background: #60a5fa;
+}
+
+.status-fill.contacted {
+  background: #38bdf8;
+}
+
+.status-fill.qualified {
+  background: #22c55e;
+}
+
+.status-fill.proposal {
+  background: #f59e0b;
+}
+
+.status-fill.won,
+.progress-fill.won {
+  background: #14b8a6;
+}
+
+.status-fill.lost {
+  background: #ef4444;
+}
+
+@media (max-width: 1120px) {
+  .dashboard-visuals {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 840px) {
   .hero {
     grid-template-columns: 1fr;
